@@ -1,0 +1,44 @@
+<h1 class="animated fadeIn">
+  {{ discoteca.nombre }} <small>{{ discoteca.aparicion }}</small>
+</h1>
+<hr />
+
+<div class="row animated fadeIn fast">
+  <div class="col-md-4">
+    <img
+      class="img-fluid"
+      [src]="'assets/img/' + discoteca.imagen"
+      [alt]="discoteca.nombre"
+    />
+    <br /><br />
+    <a [routerLink]="['/discotecas']" class="btn btn-outline-danger btn-block">
+      Regresar
+    </a>
+  </div>
+
+  <div class="col-md-8">
+    <h3>{{ discoteca.nombre }}</h3>
+    <hr />
+    <p>{{ discoteca.descripcion }}</p>
+
+    <ul class="list-unstyled">
+      <li><strong>Ubicación:</strong> {{ discoteca.ubicacion }}</li>
+      <li><strong>Horario:</strong> {{ discoteca.horario }}</li>
+      <li><strong>Música:</strong> {{ discoteca.musica.join(", ") }}</li>
+      <li><strong>Edad mínima:</strong> {{ discoteca.edadMinima }} años</li>
+      <li><strong>Precio entrada:</strong> {{ discoteca.precioEntrada }} €</li>
+    </ul>
+
+    <!-- Puedes agregar logos personalizados de discotecas si quieres -->
+    <!-- Ejemplo opcional:
+    <div>
+      <img
+        *ngIf="discoteca.logo"
+        class="img-logo"
+        [src]="'assets/logos/' + discoteca.logo"
+        [alt]="discoteca.nombre + ' logo'"
+      />
+    </div>
+    -->
+  </div>
+</div>

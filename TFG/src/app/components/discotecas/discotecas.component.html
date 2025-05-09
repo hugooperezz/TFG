@@ -1,0 +1,36 @@
+<h1 class="animated fadeIn fast">Discotecas <small>Madrid</small></h1>
+<hr />
+
+<div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn">
+  <div class="col" *ngFor="let discoteca of discotecas; let i = index">
+    <div class="card h-100">
+      <img
+        class="card-img-top"
+        [src]="'assets/img/' + discoteca.imagen"
+        [alt]="discoteca.nombre"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ discoteca.nombre }}</h5>
+        <p class="card-text">{{ discoteca.descripcion }}</p>
+        <ul class="list-unstyled text-muted small">
+          <li><strong>Ubicación:</strong> {{ discoteca.ubicacion }}</li>
+          <li><strong>Horario:</strong> {{ discoteca.horario }}</li>
+          <li><strong>Música:</strong> {{ discoteca.musica.join(", ") }}</li>
+          <li><strong>Edad mínima:</strong> {{ discoteca.edadMinima }} años</li>
+          <li>
+            <strong>Precio entrada:</strong> {{ discoteca.precioEntrada }} €
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-footer">
+        <a
+          [routerLink]="['/discoteca', i]"
+          class="btn btn-outline-primary btn-block"
+        >
+          Ver más
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

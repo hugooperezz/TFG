@@ -1,0 +1,46 @@
+<h1 class="animated fadeIn fast">
+  Buscado: <small>{{ termino }}</small>
+</h1>
+<hr />
+
+<div class="row animated fadeIn fast" *ngIf="discotecas.length == 0">
+  <div class="col-md-12">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">
+        No existen resultados con el termino: {{ termino }}
+      </h4>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn">
+  <div class="col" *ngFor="let discoteca of discotecas; let i = index">
+    <div class="card h-100">
+      <img class="card-img-top" alt="discoteca.nombre" />
+      <div class="card-body">
+        <h5 class="card-title">{{ discoteca.nombre }}</h5>
+        <p class="card-text">{{ discoteca.bio }}</p>
+        <p class="card-text">
+          <small class="text-body-secondary"
+            >Ultima aparicion {{ discoteca.aparicion }}</small
+          >
+        </p>
+      </div>
+
+      <div class="card-footer">
+        <!--<button
+          type="button"
+          class="btn btn-outline-primary btn-block"
+          style="width: 100%"
+        >
+          Ver mas
+        </button>-->
+        <a
+          [routerLink]="['/discoteca', i]"
+          class="btn btn-outline-primary btn-block"
+          >Ver mas link...</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
