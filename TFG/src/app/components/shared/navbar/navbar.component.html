@@ -1,55 +1,121 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="A-64.png" width="30" height="24" />
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" aria-current="page" [routerLink]="['/home']"
-            >Home</a
-          >
-        </li>
+<nav class="bg-gray-900 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo y botón móvil -->
+      <div class="flex items-center">
+        <a href="#" class="flex-shrink-0">
+          <img src="A-64.png" alt="Logo" class="h-8 w-8" />
+        </a>
+      </div>
 
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" aria-current="page" [routerLink]="['/discotecas']"
-            >Discotecas</a
+      <!-- Menú para desktop (hidden en móvil) -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a
+          [routerLink]="['/home']"
+          class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          routerLinkActive="bg-gray-800 text-white"
+        >
+          Home
+        </a>
+        <a
+          [routerLink]="['/discotecas']"
+          class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          routerLinkActive="bg-gray-800 text-white"
+        >
+          Discotecas
+        </a>
+        <a
+          [routerLink]="['/about']"
+          class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          routerLinkActive="bg-gray-800 text-white"
+        >
+          About
+        </a>
+      </div>
+
+      <!-- Buscador -->
+      <div class="hidden md:flex items-center">
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="Buscar"
+            class="bg-gray-700 text-white px-4 py-1 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            (keyup.enter)="buscarDiscoteca(buscarTexto.value)"
+            #buscarTexto
+          />
+          <button
+            (click)="buscarDiscoteca(buscarTexto.value)"
+            class="ml-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-sm"
           >
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" aria-current="page" [routerLink]="['/about']"
-            >About</a
+            Buscar
+          </button>
+        </div>
+      </div>
+
+      <!-- Botón móvil -->
+      <div class="md:hidden flex items-center">
+        <button
+          type="button"
+          class="text-gray-300 hover:text-white focus:outline-none"
+          (click)="isMenuOpen = !isMenuOpen"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menú móvil (solo aparece al hacer clic) -->
+  <div *ngIf="isMenuOpen" class="md:hidden bg-gray-800">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a
+        [routerLink]="['/home']"
+        class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        routerLinkActive="bg-gray-700 text-white"
+      >
+        Home
+      </a>
+      <a
+        [routerLink]="['/discotecas']"
+        class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        routerLinkActive="bg-gray-700 text-white"
+      >
+        Discotecas
+      </a>
+      <a
+        [routerLink]="['/about']"
+        class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        routerLinkActive="bg-gray-700 text-white"
+      >
+        About
+      </a>
+      <div class="mt-4 px-3">
         <input
-          class="form-control me-2"
-          type="search"
+          type="text"
           placeholder="Buscar"
-          aria-label="Search"
+          class="bg-gray-700 text-white w-full px-4 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           (keyup.enter)="buscarDiscoteca(buscarTexto.value)"
           #buscarTexto
         />
         <button
           (click)="buscarDiscoteca(buscarTexto.value)"
-          class="btn btn-outline-success"
-          type="submit"
+          class="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm"
         >
           Buscar
         </button>
-      </form>
+      </div>
     </div>
   </div>
 </nav>
