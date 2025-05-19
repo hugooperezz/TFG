@@ -6,7 +6,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-heroe',
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink],
   templateUrl: './discoteca.component.html',
   styleUrl: './discoteca.component.css',
 })
