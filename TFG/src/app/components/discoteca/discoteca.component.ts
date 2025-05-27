@@ -31,7 +31,10 @@ export class DiscotecaComponent {
 
   agregarComentario() {
     if (this.nuevoComentario.texto.trim()) {
-      this.comentarios.push({ ...this.nuevoComentario });
+      this.comentarios.push({
+        texto: this.nuevoComentario.texto,
+        valoracion: Number(this.nuevoComentario.valoracion),
+      });
       this.nuevoComentario = {
         texto: '',
         valoracion: 5,
