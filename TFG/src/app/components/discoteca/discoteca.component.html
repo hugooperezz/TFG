@@ -30,3 +30,48 @@
     </ul>
   </div>
 </div>
+<hr />
+<h4>Comentarios y valoraciones</h4>
+
+<!-- Formulario para añadir comentario -->
+<div class="mb-4">
+  <textarea
+    [(ngModel)]="nuevoComentario.texto"
+    rows="3"
+    placeholder="Escribe tu comentario..."
+    class="w-full p-2 border rounded-md mb-2"
+  ></textarea>
+
+  <label for="valoracion" class="mr-2">Valoración:</label>
+  <select
+    id="valoracion"
+    [(ngModel)]="nuevoComentario.valoracion"
+    class="p-1 border rounded"
+  >
+    <option *ngFor="let val of [1, 2, 3, 4, 5]" [value]="val">{{ val }}</option>
+  </select>
+
+  <button
+    (click)="agregarComentario()"
+    class="ml-2 bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition-all"
+  >
+    Comentar
+  </button>
+</div>
+
+<!-- Media de valoraciones -->
+<div *ngIf="comentarios.length > 0" class="mb-4">
+  <strong>Valoración media:</strong>
+  {{ calcularMediaValoraciones() | number : "1.1-2" }} / 5
+</div>
+
+<!-- Lista de comentarios -->
+<div
+  *ngFor="let comentario of comentarios"
+  class="mb-4 p-3 border rounded bg-gray-50"
+>
+  <p class="mb-1">
+    <strong>Valoración:</strong> {{ comentario.valoracion }} / 5
+  </p>
+  <p class="mb-0">{{ comentario.texto }}</p>
+</div>
