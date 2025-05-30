@@ -7,7 +7,7 @@ export class DiscotecaService {
       nombre: 'Club Neon',
       descripcion:
         'Una discoteca futurista con luces LED y pantallas envolventes.',
-      imagen: 'club-neon.jpg',
+      imagen: 'fotoPrueba.png',
       ubicacion: 'Madrid, España',
       horario: '22:00 - 06:00',
       musica: ['Techno', 'House', 'Electrónica'],
@@ -18,7 +18,7 @@ export class DiscotecaService {
       nombre: 'La Cueva',
       descripcion:
         'Ambiente underground con música alternativa y decoración industrial.',
-      imagen: 'la-cueva.jpg',
+      imagen: 'fotoPrueba.png',
       ubicacion: 'Barcelona, España',
       horario: '21:00 - 05:30',
       musica: ['Rock', 'Indie', 'Alternativa'],
@@ -29,7 +29,7 @@ export class DiscotecaService {
       nombre: 'Tropic Club',
       descripcion:
         'Fiestas temáticas con ambientación tropical y cócteles exóticos.',
-      imagen: 'tropic-club.jpg',
+      imagen: 'fotoPrueba.png',
       ubicacion: 'Valencia, España',
       horario: '23:00 - 07:00',
       musica: ['Reggaetón', 'Latino', 'Pop'],
@@ -40,7 +40,7 @@ export class DiscotecaService {
       nombre: 'Skyline',
       descripcion:
         'Ubicada en la azotea de un rascacielos con vistas increíbles de la ciudad.',
-      imagen: 'skyline.jpg',
+      imagen: 'fotoPrueba.png',
       ubicacion: 'Sevilla, España',
       horario: '20:00 - 03:00',
       musica: ['Lounge', 'Deep House'],
