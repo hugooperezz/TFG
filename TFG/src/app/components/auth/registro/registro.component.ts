@@ -31,7 +31,7 @@ export class RegistroComponent {
         },
         error: (err) => {
           console.error('Error al crear usuario:', err);
-          //alert('Error al crear usuario');
+          alert('Error al crear usuario');
         },
       });
   }
