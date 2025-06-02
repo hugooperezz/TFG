@@ -68,10 +68,10 @@
 <!-- Lista de comentarios -->
 <div
   *ngFor="let comentario of comentarios"
-  class="mb-4 p-3 border rounded bg-gray-50"
+  class="mb-4 p-3 border rounded bg-gray-50 dark:bg-gray-800"
 >
-  <p class="mb-1">
+  <p class="mb-1 text-blue-500">
     <strong>Valoración:</strong> {{ comentario.valoracion }} / 5
   </p>
-  <p class="mb-0">{{ comentario.texto }}</p>
+  <p class="mb-0 text-gray-900 dark:text-white">{{ comentario.texto }}</p>
 </div>

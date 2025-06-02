@@ -35,24 +35,38 @@
         </a>
       </div>
 
-      <!-- Login y Registro + Buscador (desktop) -->
+      <!-- Login/Registro o Usuario + Buscador (desktop) -->
       <div class="hidden md:flex items-center space-x-4">
-        <!-- Login y Registro -->
         <div class="flex items-center space-x-4 mr-4">
-          <a
-            [routerLink]="['/login']"
-            class="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-all duration-300 px-3 py-2 rounded-md text-sm font-medium"
-            routerLinkActive="bg-gray-200 dark:bg-gray-800 text-green-700 dark:text-green-300"
-          >
-            Login
-          </a>
-          <a
-            [routerLink]="['/registro']"
-            class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300 px-3 py-2 rounded-md text-sm font-medium"
-            routerLinkActive="bg-gray-200 dark:bg-gray-800 text-blue-700 dark:text-blue-300"
-          >
-            Registro
-          </a>
+          <ng-container *ngIf="!usuarioLogueado; else userLoggedIn">
+            <a
+              [routerLink]="['/login']"
+              class="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 transition-all duration-300 px-3 py-2 rounded-md text-sm font-medium"
+              routerLinkActive="bg-gray-200 dark:bg-gray-800 text-green-700 dark:text-green-300"
+            >
+              Login
+            </a>
+            <a
+              [routerLink]="['/registro']"
+              class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300 px-3 py-2 rounded-md text-sm font-medium"
+              routerLinkActive="bg-gray-200 dark:bg-gray-800 text-blue-700 dark:text-blue-300"
+            >
+              Registro
+            </a>
+          </ng-container>
+          <ng-template #userLoggedIn>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-white">
+                Bienvenido, {{ usuarioLogueado.nombre }}
+              </span>
+              <button
+                (click)="logout()"
+                class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-all duration-300 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          </ng-template>
         </div>
 
         <!-- Buscador -->
@@ -125,22 +139,39 @@
       >
         About
       </a>
-      <a
-        [routerLink]="['/login']"
-        class="block px-3 py-2 rounded-md text-base font-medium text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300"
-        routerLinkActive="bg-gray-200 dark:bg-gray-700 text-green-700 dark:text-green-300"
-      >
-        Login
-      </a>
-      <a
-        [routerLink]="['/registro']"
-        class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
-        routerLinkActive="bg-gray-200 dark:bg-gray-700 text-blue-700 dark:text-blue-300"
-      >
-        Registro
-      </a>
 
-      <!-- Buscador (móvil) -->
+      <ng-container *ngIf="!usuarioLogueado; else userLoggedMobile">
+        <a
+          [routerLink]="['/login']"
+          class="block px-3 py-2 rounded-md text-base font-medium text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300"
+          routerLinkActive="bg-gray-200 dark:bg-gray-700 text-green-700 dark:text-green-300"
+        >
+          Login
+        </a>
+        <a
+          [routerLink]="['/registro']"
+          class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+          routerLinkActive="bg-gray-200 dark:bg-gray-700 text-blue-700 dark:text-blue-300"
+        >
+          Registro
+        </a>
+      </ng-container>
+
+      <ng-template #userLoggedMobile>
+        <div class="flex flex-col px-3 space-y-2">
+          <span class="text-base font-medium text-gray-800 dark:text-white">
+            Bienvenido, {{ usuarioLogueado.nombre }}
+          </span>
+          <button
+            (click)="logout()"
+            class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-all duration-300 px-3 py-2 rounded-md text-base font-medium text-left"
+          >
+            Cerrar sesión
+          </button>
+        </div>
+      </ng-template>
+
+      <!-- Buscador móvil -->
       <div class="mt-4 px-3">
         <input
           type="text"
