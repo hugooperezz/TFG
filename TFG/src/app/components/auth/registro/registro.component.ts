@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../servicios/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +16,7 @@ export class RegistroComponent {
   correo: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   registrar() {
     this.authService
@@ -28,6 +29,7 @@ export class RegistroComponent {
         next: (res) => {
           console.log('Respuesta del backend:', res);
           alert('Usuario creado');
+          this.router.navigate(['/login']);
         },
         error: (err) => {
           console.error('Error al crear usuario:', err);
