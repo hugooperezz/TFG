@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -12,9 +13,18 @@ export class AuthService {
   }
 
   loginUsuario(correo: string, password: string) {
-    return this.http.post<{ mensaje: string; usuario: any }>(
-      'http://localhost:3000/api/login',
-      { correo, password }
-    );
+    return this.http
+      .post<{ mensaje: string; usuario: any }>(`${this.apiUrl}/login`, {
+        correo,
+        password,
+      })
+      .pipe(
+        catchError((error) => {
+          console.error('Error en AuthService:', error);
+          return throwError(
+            () => new Error(error.error?.error || 'Error desconocido')
+          );
+        })
+      );
   }
 }

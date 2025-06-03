@@ -23,14 +23,25 @@ export class LoginComponent {
   ) {}
 
   login() {
+    console.log('Intentando login con:', {
+      correo: this.correo,
+      password: this.password,
+    }); // ← Depuración
+
     this.authService.loginUsuario(this.correo, this.password).subscribe({
       next: (res) => {
-        localStorage.setItem('usuario', JSON.stringify(res.usuario));
-        this.usuarioService.setUsuario(res.usuario);
-        this.router.navigate(['/home']);
+        console.log('Respuesta del servidor:', res); // ← Depuración
+        if (res.usuario) {
+          localStorage.setItem('usuario', JSON.stringify(res.usuario));
+          this.usuarioService.setUsuario(res.usuario);
+          this.router.navigate(['/home']);
+        } else {
+          alert('La respuesta del servidor no incluye datos de usuario');
+        }
       },
       error: (err) => {
-        alert(err.error?.error || 'Error al iniciar sesión');
+        console.error('Error en el login:', err); // ← Depuración
+        alert(err.message || 'Error al iniciar sesión');
       },
     });
   }

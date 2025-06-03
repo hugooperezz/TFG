@@ -14,11 +14,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class DiscotecaComponent {
   discoteca: any = {};
+  usuarioLogueado: string | null = null; // Guarda el nombre del usuario logueado
   nuevoComentario = {
     texto: '',
     valoracion: 5,
   };
-  comentarios: { texto: string; valoracion: number }[] = [];
+
+  // Comentarios con usuario, texto y valoración
+  comentarios: { usuario: string; texto: string; valoracion: number }[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,14 +30,22 @@ export class DiscotecaComponent {
     this.activatedRoute.params.subscribe((params) => {
       this.discoteca = this._DiscotecasService.getDiscoteca(params['id']);
     });
+
+    // Leer el nombre del usuario logueado desde localStorage
+    const usuario = localStorage.getItem('usuario');
+    if (usuario) {
+      this.usuarioLogueado = usuario;
+    }
   }
 
   agregarComentario() {
-    if (this.nuevoComentario.texto.trim()) {
+    if (this.usuarioLogueado && this.nuevoComentario.texto.trim()) {
       this.comentarios.push({
+        usuario: this.usuarioLogueado,
         texto: this.nuevoComentario.texto,
         valoracion: Number(this.nuevoComentario.valoracion),
       });
+
       this.nuevoComentario = {
         texto: '',
         valoracion: 5,

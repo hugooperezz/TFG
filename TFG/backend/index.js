@@ -61,10 +61,15 @@ app.post("/api/usuarios", (req, res) => {
   });
 });
 
-app.post("/api/usuarios", (req, res) => {
+/*Login */
+
+app.post("/api/login", (req, res) => {
   const { correo, password } = req.body;
 
+  console.log("Datos recibidos:", req.body); // ← Añade esto para depuración
+
   if (!correo || !password) {
+    console.log("Faltan datos"); // ← Depuración
     return res.status(400).json({ error: "Faltan datos" });
   }
 
@@ -75,11 +80,15 @@ app.post("/api/usuarios", (req, res) => {
       return res.status(500).json({ error: "Error interno" });
     }
 
+    console.log("Resultados de la consulta:", results); // ← Depuración
+
     if (results.length === 0) {
+      console.log("Credenciales incorrectas"); // ← Depuración
       return res.status(401).json({ error: "Credenciales incorrectas" });
     }
 
     const usuario = results[0];
+    console.log("Usuario encontrado:", usuario); // ← Depuración
     res.status(200).json({ mensaje: "Login exitoso", usuario });
   });
 });
