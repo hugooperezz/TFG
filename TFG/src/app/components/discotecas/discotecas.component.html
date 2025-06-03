@@ -1,35 +1,73 @@
-<h1 class="animated fadeIn fast">Discotecas <small>Madrid</small></h1>
-<hr />
+<div class="min-h-screen transition-colors duration-300">
+  <div class="container mx-auto px-4 py-8">
+    <h1
+      class="text-4xl font-bold mb-4 text-gray-800 dark:text-white animate-fadeIn"
+    >
+      Discotecas Madrid
+    </h1>
+    <hr class="border-gray-300 dark:border-gray-700 mb-8" />
 
-<div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn">
-  <div class="col" *ngFor="let discoteca of discotecas; let i = index">
-    <div class="card h-100">
-      <img
-        class="card-img-top"
-        [src]="'assets/img/' + discoteca.imagen"
-        [alt]="discoteca.nombre"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ discoteca.nombre }}</h5>
-        <p class="card-text">{{ discoteca.descripcion }}</p>
-        <ul class="list-unstyled text-muted small">
-          <li><strong>Ubicación:</strong> {{ discoteca.ubicacion }}</li>
-          <li><strong>Horario:</strong> {{ discoteca.horario }}</li>
-          <li><strong>Música:</strong> {{ discoteca.musica.join(", ") }}</li>
-          <li><strong>Edad mínima:</strong> {{ discoteca.edadMinima }} años</li>
-          <li>
-            <strong>Precio entrada:</strong> {{ discoteca.precioEntrada }} €
-          </li>
-        </ul>
-      </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeIn"
+    >
+      <div
+        *ngFor="let discoteca of discotecas; let i = index"
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
+      >
+        <img
+          class="w-full h-48 object-cover"
+          [src]="'assets/img/' + discoteca.imagen"
+          [alt]="discoteca.nombre"
+        />
+        <div class="p-4">
+          <h5 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+            {{ discoteca.nombre }}
+          </h5>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            {{ discoteca.descripcion }}
+          </p>
+          <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+            <li class="flex">
+              <span class="font-medium text-gray-700 dark:text-gray-300 w-24"
+                >Ubicación:</span
+              >
+              <span>{{ discoteca.ubicacion }}</span>
+            </li>
+            <li class="flex">
+              <span class="font-medium text-gray-700 dark:text-gray-300 w-24"
+                >Horario:</span
+              >
+              <span>{{ discoteca.horario }}</span>
+            </li>
+            <li class="flex">
+              <span class="font-medium text-gray-700 dark:text-gray-300 w-24"
+                >Música:</span
+              >
+              <span>{{ discoteca.musica.join(", ") }}</span>
+            </li>
+            <li class="flex">
+              <span class="font-medium text-gray-700 dark:text-gray-300 w-24"
+                >Edad mínima:</span
+              >
+              <span>{{ discoteca.edadMinima }} años</span>
+            </li>
+            <li class="flex">
+              <span class="font-medium text-gray-700 dark:text-gray-300 w-24"
+                >Precio entrada:</span
+              >
+              <span>{{ discoteca.precioEntrada }} €</span>
+            </li>
+          </ul>
+        </div>
 
-      <div class="card-footer">
-        <a
-          [routerLink]="['/discoteca', i]"
-          class="btn btn-outline-primary btn-block"
-        >
-          Ver más
-        </a>
+        <div class="px-4 pb-4">
+          <a
+            [routerLink]="['/discoteca', i]"
+            class="block w-full py-2 px-4 text-center rounded-md border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white"
+          >
+            Ver más
+          </a>
+        </div>
       </div>
     </div>
   </div>
