@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
 export class DiscotecaService {
   private discotecas: Discoteca[] = [
     {
-      nombre: 'Club Neon',
+      nombre: 'La Cue',
       descripcion:
         'Una discoteca futurista con luces LED y pantallas envolventes.',
-      imagen: 'fotoPrueba.png',
+      imagen: 'Cue.png',
       ubicacion: 'Madrid, España',
       horario: '22:00 - 06:00',
       musica: ['Techno', 'House', 'Electrónica'],
@@ -15,10 +15,10 @@ export class DiscotecaService {
       edadMinima: 18,
     },
     {
-      nombre: 'La Cueva',
+      nombre: 'Tarantino',
       descripcion:
         'Ambiente underground con música alternativa y decoración industrial.',
-      imagen: 'fotoPrueba.png',
+      imagen: 'Tarantino.jpg',
       ubicacion: 'Barcelona, España',
       horario: '21:00 - 05:30',
       musica: ['Rock', 'Indie', 'Alternativa'],
@@ -26,10 +26,10 @@ export class DiscotecaService {
       edadMinima: 18,
     },
     {
-      nombre: 'Tropic Club',
+      nombre: 'Closer',
       descripcion:
         'Fiestas temáticas con ambientación tropical y cócteles exóticos.',
-      imagen: 'fotoPrueba.png',
+      imagen: 'Closer.png',
       ubicacion: 'Valencia, España',
       horario: '23:00 - 07:00',
       musica: ['Reggaetón', 'Latino', 'Pop'],
@@ -37,10 +37,10 @@ export class DiscotecaService {
       edadMinima: 21,
     },
     {
-      nombre: 'Skyline',
+      nombre: 'BelePop',
       descripcion:
         'Ubicada en la azotea de un rascacielos con vistas increíbles de la ciudad.',
-      imagen: 'fotoPrueba.png',
+      imagen: 'belle.jpeg',
       ubicacion: 'Sevilla, España',
       horario: '20:00 - 03:00',
       musica: ['Lounge', 'Deep House'],

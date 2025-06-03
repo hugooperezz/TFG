@@ -14,14 +14,20 @@ import { FormsModule } from '@angular/forms';
 })
 export class DiscotecaComponent {
   discoteca: any = {};
-  usuarioLogueado: string | null = null; // Guarda el nombre del usuario logueado
+  usuarioLogueado: string | null = null;
   nuevoComentario = {
     texto: '',
     valoracion: 5,
   };
-
-  // Comentarios con usuario, texto y valoración
   comentarios: { usuario: string; texto: string; valoracion: number }[] = [];
+  indiceImagenActual: number = 0;
+
+  // Array de imágenes de ejemplo (puedes modificarlo según tus necesidades)
+  imagenesDemo: string[] = [
+    'assets/img/discotecas/demo1.jpg',
+    'assets/img/discotecas/demo2.jpg',
+    'assets/img/discotecas/demo3.jpg',
+  ];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,13 +35,32 @@ export class DiscotecaComponent {
   ) {
     this.activatedRoute.params.subscribe((params) => {
       this.discoteca = this._DiscotecasService.getDiscoteca(params['id']);
+      // Asignamos imágenes demo si no hay imágenes definidas
+      if (!this.discoteca.imagenes) {
+        this.discoteca.imagenes = [this.discoteca.imagen, ...this.imagenesDemo];
+      }
     });
 
-    // Leer el nombre del usuario logueado desde localStorage
     const usuario = localStorage.getItem('usuario');
     if (usuario) {
       this.usuarioLogueado = usuario;
     }
+  }
+
+  // Métodos para el carrusel
+  imagenSiguiente() {
+    this.indiceImagenActual =
+      (this.indiceImagenActual + 1) % this.discoteca.imagenes.length;
+  }
+
+  imagenAnterior() {
+    this.indiceImagenActual =
+      (this.indiceImagenActual - 1 + this.discoteca.imagenes.length) %
+      this.discoteca.imagenes.length;
+  }
+
+  cambiarImagen(indice: number) {
+    this.indiceImagenActual = indice;
   }
 
   agregarComentario() {
