@@ -6,7 +6,11 @@
       <!-- Logo -->
       <div class="flex items-center">
         <a href="#" class="flex-shrink-0">
-          <img src="A-64.png" alt="Logo" class="h-8 w-8" />
+          <img
+            src="Logo.png"
+            alt="Logo"
+            class="h-12 w-12 hover:scale-125 transition-all duration-300"
+          />
         </a>
       </div>
 
@@ -33,9 +37,16 @@
         >
           About
         </a>
+        <a
+          [routerLink]="['/comentarios']"
+          class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          routerLinkActive="bg-gray-200 dark:bg-gray-800 text-blue-700 dark:text-white"
+        >
+          Comentarios
+        </a>
       </div>
 
-      <!-- Login/Registro o Usuario + Buscador (desktop) -->
+      <!-- Login/Registro -->
       <div class="hidden md:flex items-center space-x-4">
         <div class="flex items-center space-x-4 mr-4">
           <ng-container *ngIf="!usuarioLogueado; else userLoggedIn">
@@ -80,7 +91,7 @@
           />
           <button
             (click)="buscarDiscoteca(buscarTexto.value)"
-            class="ml-2 bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white px-3 py-1 rounded-md text-sm"
+            class="ml-2 bg-blue-600 hover:bg-blue-700 transition-all hover:scale-110 duration-300 text-white px-3 py-1 rounded-md text-sm"
           >
             Buscar
           </button>
@@ -138,6 +149,13 @@
         routerLinkActive="bg-gray-200 dark:bg-gray-700 text-blue-700 dark:text-white"
       >
         About
+      </a>
+      <a
+        [routerLink]="['/comentarios']"
+        class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-white"
+        routerLinkActive="bg-gray-200 dark:bg-gray-700 text-blue-700 dark:text-white"
+      >
+        Comentarios
       </a>
 
       <ng-container *ngIf="!usuarioLogueado; else userLoggedMobile">

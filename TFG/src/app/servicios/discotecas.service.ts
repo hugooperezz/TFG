@@ -1,7 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+export interface Discoteca {
+  nombre: string;
+  descripcion: string;
+  imagen: string;
+  ubicacion: string;
+  horario: string;
+  musica: string[];
+  precioEntrada: number;
+  edadMinima: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class DiscotecaService {
+  private apiUrl = 'http://localhost:3000/api';
+
+  // Datos locales de prueba
   private discotecas: Discoteca[] = [
     {
       nombre: 'La Cue',
@@ -49,38 +65,44 @@ export class DiscotecaService {
     },
   ];
 
-  constructor() {
-    console.log('Servicio listo para usarse');
-  }
+  constructor(private http: HttpClient) {}
 
-  getDiscotecas() {
+  // Obtener todas las discotecas (datos locales)
+  getDiscotecas(): Discoteca[] {
     return this.discotecas;
   }
 
-  getDiscoteca(i: any) {
-    return this.discotecas[i];
+  // Obtener una discoteca por su índice (datos locales)
+  getDiscoteca(index: number): Discoteca {
+    return this.discotecas[index];
   }
 
-  buscarDiscoteca(termino: string) {
-    let discotecasArr: Discoteca[] = [];
+  // Buscar discotecas por nombre
+  buscarDiscoteca(termino: string): Discoteca[] {
+    const resultado: Discoteca[] = [];
     termino = termino.toLowerCase();
 
-    for (let heroe of this.discotecas) {
-      let nombre = heroe.nombre.toLowerCase();
-      if (nombre.indexOf(termino) >= 0) {
-        discotecasArr.push(heroe);
+    for (let discoteca of this.discotecas) {
+      if (discoteca.nombre.toLowerCase().includes(termino)) {
+        resultado.push(discoteca);
       }
     }
-    return discotecasArr;
+
+    return resultado;
   }
-}
-export interface Discoteca {
-  nombre: string; // Nombre de la discoteca
-  descripcion: string; // Breve descripción o historia
-  imagen: string; // URL o ruta de la imagen
-  ubicacion: string; // Dirección o ciudad
-  horario: string; // Ej: "22:00 - 06:00"
-  musica: string[]; // Estilos de música (ej: ["Techno", "Reggaetón"])
-  precioEntrada: number; // Precio aproximado de entrada
-  edadMinima: number; // Edad mínima permitida
+
+  // Obtener comentarios desde el backend
+  getComentarios(discotecaId: number): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.apiUrl}/discotecas/${discotecaId}/comentarios`
+    );
+  }
+
+  // Enviar comentario al backend
+  addComentario(discotecaId: number, comentario: any): Observable<any> {
+    return this.http.post(
+      `${this.apiUrl}/discotecas/${discotecaId}/comentarios`,
+      comentario
+    );
+  }
 }

@@ -93,6 +93,94 @@ app.post("/api/login", (req, res) => {
   });
 });
 
+// Obtener todos los comentarios (GET)
+app.get("/api/com", (req, res) => {
+  const query =
+    "SELECT id, texto, usuario, fecha FROM comentarios ORDER BY fecha DESC";
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error("❌ Error al obtener comentarios:", err);
+      return res.status(500).json({ error: "Error al obtener comentarios" });
+    }
+
+    // Formatear la fecha para que sea legible
+    const comentarios = results.map((comentario) => ({
+      ...comentario,
+      fecha: new Date(comentario.fecha).toLocaleString(),
+    }));
+
+    res.status(200).json(comentarios);
+  });
+});
+
+// Añadir nuevo comentario (POST)
+app.post("/api/com", (req, res) => {
+  const { texto, usuario } = req.body;
+
+  // Validar que se reciban los campos obligatorios
+  if (!texto || !usuario) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  const query = "INSERT INTO comentarios (texto, usuario) VALUES (?, ?)";
+  connection.query(query, [texto, usuario], (err, result) => {
+    if (err) {
+      console.error("❌ Error al insertar comentario:", err);
+      return res.status(500).json({ error: "Error al guardar comentario" });
+    }
+
+    res.status(201).json({
+      mensaje: "Comentario añadido correctamente",
+      id: result.insertId,
+      usuario,
+      texto,
+      fecha: new Date().toISOString(),
+    });
+  });
+});
+
+// Obtener comentarios de una discoteca
+app.get("/api/discotecas/:id/comentarios", (req, res) => {
+  const discotecaId = parseInt(req.params.id);
+
+  const query =
+    "SELECT * FROM comentarios_discotecas WHERE discoteca_id = ? ORDER BY fecha DESC";
+  connection.query(query, [discotecaId], (err, results) => {
+    if (err) {
+      console.error("❌ Error al obtener comentarios:", err);
+      return res.status(500).json({ error: "Error al obtener comentarios" });
+    }
+    res.json(results);
+  });
+});
+
+// Añadir nuevo comentario
+app.post("/api/discotecas/:id/comentarios", (req, res) => {
+  const discotecaId = parseInt(req.params.id);
+  const { usuario, texto, valoracion } = req.body;
+
+  if (!usuario || !texto || !valoracion) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  const query =
+    "INSERT INTO comentarios_discotecas (discoteca_id, usuario, texto, valoracion) VALUES (?, ?, ?, ?)";
+  connection.query(
+    query,
+    [discotecaId, usuario, texto, valoracion],
+    (err, result) => {
+      if (err) {
+        console.error("❌ Error al insertar comentario:", err);
+        return res.status(500).json({ error: "Error al guardar comentario" });
+      }
+      res
+        .status(201)
+        .json({ mensaje: "Comentario añadido", id: result.insertId });
+    }
+  );
+});
+
 // Iniciar servidor
 app.listen(PORT, () => {
   console.log(`🟢 Servidor escuchando en http://localhost:${PORT}`);

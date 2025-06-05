@@ -1,0 +1,60 @@
+<div class="comentarios-container p-4 max-w-xl mx-auto">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">Comentarios</h2>
+    <div class="text-sm text-gray-600" *ngIf="usuarioActual">
+      Usuario:
+      <span class="font-semibold">
+        {{ usuarioActual.nombre || usuarioActual.correo || "Anónimo" }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Formulario para nuevo comentario -->
+  <div class="mb-6" *ngIf="usuarioActual; else noAutenticado">
+    <textarea
+      [(ngModel)]="nuevoComentario"
+      placeholder="Escribe un comentario..."
+      rows="3"
+      class="w-full p-2 border border-gray-300 rounded"
+    ></textarea>
+    <button
+      (click)="enviarComentario()"
+      [disabled]="!nuevoComentario.trim()"
+      class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-blue-300"
+    >
+      Enviar comentario
+    </button>
+  </div>
+
+  <!-- Lista de comentarios -->
+  <div *ngIf="comentarios.length > 0; else sinComentarios" class="space-y-3">
+    <div
+      *ngFor="let comentario of comentarios"
+      class="bg-gray-100 p-3 rounded shadow-sm"
+    >
+      <div class="flex justify-between items-start mb-1">
+        <span class="font-semibold text-gray-800">{{
+          comentario.usuario
+        }}</span>
+        <span class="text-xs text-gray-500">
+          {{ comentario.fecha | date : "medium" }}
+        </span>
+      </div>
+      <p class="text-gray-700">{{ comentario.texto }}</p>
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay comentarios -->
+  <ng-template #sinComentarios>
+    <p class="text-gray-500 text-center py-4">
+      Todavía no hay comentarios. ¡Sé el primero en comentar!
+    </p>
+  </ng-template>
+
+  <!-- Mensaje si no hay usuario autenticado -->
+  <ng-template #noAutenticado>
+    <p class="text-red-500 text-center py-4">
+      Debes iniciar sesión para comentar.
+    </p>
+  </ng-template>
+</div>

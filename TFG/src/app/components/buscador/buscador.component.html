@@ -1,47 +1,56 @@
-<br />
-<h1 class="animated fadeIn fast">
-  Buscado: <small>{{ termino }}</small>
+<h1
+  class="animate-fade-in-fast text-3xl pt-5 font-bold text-gray-900 dark:text-gray-100"
+>
+  Buscado:
+  <small class="text-xl font-semibold text-gray-600 dark:text-gray-300">{{
+    termino
+  }}</small>
 </h1>
-<hr />
+<hr class="my-4 border-gray-200 dark:border-gray-700" />
 
-<div class="row animated fadeIn fast" *ngIf="discotecas.length == 0">
-  <div class="col-md-12">
-    <div class="alert alert-info" role="alert">
-      <h4 class="alert-heading">
-        No existen resultados con el termino: {{ termino }}
-      </h4>
+<div class="animate-fade-in-fast" *ngIf="discotecas.length == 0">
+  <div class="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/30">
+    <div class="flex">
+      <div class="ml-3">
+        <h4 class="text-sm font-medium text-blue-800 dark:text-blue-200">
+          No existen resultados con el término: {{ termino }}
+        </h4>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn">
-  <div class="col" *ngFor="let discoteca of discotecas; let i = index">
-    <div class="card h-100">
-      <img class="card-img-top" alt="discoteca.nombre" />
-      <div class="card-body">
-        <h5 class="card-title">{{ discoteca.nombre }}</h5>
-        <p class="card-text">{{ discoteca.bio }}</p>
-        <p class="card-text">
-          <small class="text-body-secondary"
-            >Ultima aparicion {{ discoteca.aparicion }}</small
-          >
-        </p>
-      </div>
-
-      <div class="card-footer">
-        <!--<button
-          type="button"
-          class="btn btn-outline-primary btn-block"
-          style="width: 100%"
-        >
-          Ver mas
-        </button>-->
-        <a
-          [routerLink]="['/discoteca', i]"
-          class="btn btn-outline-primary btn-block"
-          >Ver mas link...</a
-        >
-      </div>
+<div
+  class="grid animate-fade-in gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+>
+  <div
+    *ngFor="let discoteca of discotecas; let i = index"
+    class="flex flex-col overflow-hidden rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl dark:bg-gray-800 dark:hover:bg-gray-700"
+  >
+    <div class="h-48 bg-gray-200 dark:bg-gray-600">
+      <img
+        class="w-full h-48 object-cover"
+        [src]="discoteca.imagen"
+        [alt]="discoteca.nombre"
+      />
+    </div>
+    <!-- Placeholder for image -->
+    <div class="flex-grow p-6">
+      <h5 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+        {{ discoteca.nombre }}
+      </h5>
+      <p class="mb-4 text-base text-gray-700 dark:text-gray-300">
+        Edad minima:
+        {{ discoteca.edadMinima }}
+      </p>
+    </div>
+    <div class="p-4 pt-0">
+      <a
+        [routerLink]="['/discoteca', i]"
+        class="block w-full rounded-md bg-gray-900 px-4 py-2 text-center font-medium text-white transition-colors hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-500"
+      >
+        Ver más...
+      </a>
     </div>
   </div>
 </div>
