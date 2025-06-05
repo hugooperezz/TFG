@@ -1,60 +1,72 @@
-<div class="comentarios-container p-4 max-w-xl mx-auto">
-  <div class="flex justify-between items-center mb-4">
-    <h2 class="text-xl font-bold">Comentarios</h2>
-    <div class="text-sm text-gray-600" *ngIf="usuarioActual">
+<br />
+<div
+  class="comentarios-container p-6 max-w-2xl mx-auto bg-white rounded-2xl shadow-md"
+>
+  <!-- Encabezado con usuario -->
+  <div class="flex justify-between items-center mb-6 border-b pb-3">
+    <h2 class="text-2xl font-bold text-gray-800">Comentarios</h2>
+    <div *ngIf="usuarioActual" class="text-sm text-gray-500">
       Usuario:
-      <span class="font-semibold">
+      <span class="font-semibold text-gray-700">
         {{ usuarioActual.nombre || usuarioActual.correo || "Anónimo" }}
       </span>
     </div>
   </div>
 
   <!-- Formulario para nuevo comentario -->
-  <div class="mb-6" *ngIf="usuarioActual; else noAutenticado">
+  <div *ngIf="usuarioActual; else noAutenticado" class="mb-8">
+    <label class="block text-sm text-gray-600 mb-1 font-medium"
+      >Escribe un nuevo comentario:</label
+    >
     <textarea
       [(ngModel)]="nuevoComentario"
-      placeholder="Escribe un comentario..."
+      placeholder="¿Qué opinas?"
       rows="3"
-      class="w-full p-2 border border-gray-300 rounded"
+      class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm resize-none"
     ></textarea>
     <button
       (click)="enviarComentario()"
       [disabled]="!nuevoComentario.trim()"
-      class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-blue-300"
+      class="mt-3 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white font-semibold py-2 px-5 rounded-xl transition-all duration-200"
     >
-      Enviar comentario
+      Enviar
     </button>
   </div>
 
-  <!-- Lista de comentarios -->
-  <div *ngIf="comentarios.length > 0; else sinComentarios" class="space-y-3">
+  <!-- Lista de comentarios con scroll -->
+  <div
+    *ngIf="comentarios.length > 0; else sinComentarios"
+    class="space-y-5 max-h-72 overflow-y-auto pr-2"
+  >
     <div
       *ngFor="let comentario of comentarios"
-      class="bg-gray-100 p-3 rounded shadow-sm"
+      class="bg-gray-50 border border-gray-200 p-4 rounded-xl shadow-sm"
     >
-      <div class="flex justify-between items-start mb-1">
-        <span class="font-semibold text-gray-800">{{
-          comentario.usuario
-        }}</span>
+      <div class="flex justify-between items-center mb-2">
+        <span class="font-semibold text-blue-700">
+          {{ comentario.usuario }}
+        </span>
         <span class="text-xs text-gray-500">
           {{ comentario.fecha | date : "medium" }}
         </span>
       </div>
-      <p class="text-gray-700">{{ comentario.texto }}</p>
+      <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+        {{ comentario.texto }}
+      </p>
     </div>
   </div>
 
   <!-- Mensaje si no hay comentarios -->
   <ng-template #sinComentarios>
-    <p class="text-gray-500 text-center py-4">
+    <p class="text-gray-400 text-center py-6 text-sm">
       Todavía no hay comentarios. ¡Sé el primero en comentar!
     </p>
   </ng-template>
 
   <!-- Mensaje si no hay usuario autenticado -->
   <ng-template #noAutenticado>
-    <p class="text-red-500 text-center py-4">
-      Debes iniciar sesión para comentar.
+    <p class="text-red-500 text-center py-6 font-medium">
+      Debes iniciar sesión para poder comentar.
     </p>
   </ng-template>
 </div>
