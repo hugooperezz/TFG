@@ -27,19 +27,19 @@ export class PagoComponent implements OnInit {
 
     switch (this.discotecaId) {
       case 0:
-        this.ticketImagen = 'assets/tickets/ticket_cue.png';
+        this.ticketImagen = 'Tickets/TicketCue.png';
         break;
       case 1:
-        this.ticketImagen = 'assets/tickets/ticket_tarantino.png';
+        this.ticketImagen = 'Tickets/TicketTarantino.png';
         break;
       case 2:
-        this.ticketImagen = 'assets/tickets/ticket_closer.png';
+        this.ticketImagen = 'Tickets/TicketCloser.png';
         break;
       case 3:
-        this.ticketImagen = 'assets/tickets/ticket_belle.png';
+        this.ticketImagen = 'Tickets/ticketBelle.png';
         break;
       default:
-        this.ticketImagen = 'assets/tickets/ticket_default.png';
+        this.ticketImagen = 'Tickets/ticket_default.png';
     }
   }
 
