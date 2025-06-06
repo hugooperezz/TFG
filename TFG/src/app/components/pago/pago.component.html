@@ -1,0 +1,73 @@
+<div class="container mx-auto p-6 max-w-lg">
+  <h2
+    class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100 text-center"
+  >
+    Formulario de pago
+  </h2>
+
+  <div
+    *ngIf="!pagoRealizado"
+    class="bg-transparent dark:bg-gray-800 border dark:border-white shadow rounded-lg p-6 transition-colors duration-300"
+  >
+    <label class="block mb-2 text-gray-700 dark:text-gray-200"
+      >Nombre del titular</label
+    >
+    <input
+      type="text"
+      class="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 p-2 w-full mb-4 rounded"
+      placeholder="Introduce tu nombre"
+    />
+
+    <label class="block mb-2 text-gray-700 dark:text-gray-200"
+      >Número de tarjeta</label
+    >
+    <input
+      type="text"
+      class="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 p-2 w-full mb-4 rounded"
+      placeholder="XXXX XXXX XXXX XXXX"
+    />
+
+    <label class="block mb-2 text-gray-700 dark:text-gray-200"
+      >Fecha de caducidad</label
+    >
+    <input
+      type="month"
+      class="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 p-2 w-full mb-4 rounded"
+    />
+
+    <label class="block mb-2 text-gray-700 dark:text-gray-200">CVV</label>
+    <input
+      type="text"
+      class="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 p-2 w-full mb-4 rounded"
+      placeholder="123"
+      maxlength="3"
+    />
+
+    <button
+      (click)="realizarPago()"
+      class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition duration-200"
+    >
+      Realizar pago
+    </button>
+  </div>
+
+  <div
+    *ngIf="pagoRealizado"
+    class="mt-6 bg-transparent border dark:border-white shadow rounded-lg p-6 text-center transition-colors duration-300"
+  >
+    <h3 class="text-xl font-semibold text-green-700 dark:text-green-400">
+      ¡Pago completado!
+    </h3>
+    <img
+      [src]="ticketImagen"
+      alt="Ticket"
+      class="mx-auto mt-4 w-full max-w-xs border rounded shadow"
+    />
+    <button
+      (click)="descargarImagen()"
+      class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200"
+    >
+      Descargar ticket
+    </button>
+  </div>
+</div>

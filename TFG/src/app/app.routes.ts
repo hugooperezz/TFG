@@ -8,6 +8,7 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegistroComponent } from './components/auth/registro/registro.component';
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
+import { PagoComponent } from './components/pago/pago.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'buscar/:termino', component: BuscadorComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+  { path: 'pago/:id', component: PagoComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];

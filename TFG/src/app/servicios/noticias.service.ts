@@ -16,59 +16,67 @@ export class NoticiasService {
   private noticias: Noticia[] = [
     {
       id: 1,
-      titulo: 'Apertura de la nueva discoteca Eclipse',
+      titulo: 'La Cue presenta su nuevo ciclo de música electrónica',
       descripcion:
-        'La discoteca Eclipse abre sus puertas este sábado con DJ internacionales y una experiencia 360º.',
-      imagen: 'Cue.png',
+        'Cada sábado de junio, La Cue contará con DJs invitados de renombre nacional para llevar la música electrónica al siguiente nivel.',
+      imagen: 'Cue2.jpg',
+      fecha: '2025-06-01',
     },
     {
       id: 2,
-      titulo: 'Noche retro en la Disco Flashback',
+      titulo: 'Tarantino lanza sus noches de cine y copas',
       descripcion:
-        'Vuelve a los 80 con música, vestimenta y decoración de la época. Premios al mejor look retro.',
-      imagen: 'fotoPrueba.png',
+        'El pub Tarantino inicia un ciclo temático donde cada viernes proyectará clásicos del cine mientras ofrece promociones en bebidas.',
+      imagen: 'Tarantino2.jpeg',
+      fecha: '2025-06-02',
     },
     {
       id: 3,
-      titulo: 'Concierto sorpresa de DJ Invisible',
+      titulo: 'Closer celebra su fiesta universitaria “Toy Crazy”',
       descripcion:
-        'El famoso DJ Invisible aparece sin previo aviso en la Sala Nova y revoluciona la noche.',
-      imagen: 'fotoPrueba.png',
+        'Este fin de semana, la Sala Closer organiza su icónica fiesta universitaria con reggaetón, pop y un ambiente inigualable.',
+      imagen: 'Closer2.png',
+      fecha: '2025-06-03',
     },
     {
       id: 4,
-      titulo: 'La espuma invade el Club Aqua',
+      titulo: 'Belle Fusión inaugura terraza de verano con DJs lounge',
       descripcion:
-        'Más de 500 asistentes disfrutaron de la fiesta de espuma más grande del verano.',
-      imagen: 'fotoPrueba.png',
+        'La Belle Fusión estrena su terraza de verano con sesiones deep house y ambiente chill para disfrutar al aire libre.',
+      imagen: 'belle2.jpeg',
+      fecha: '2025-06-04',
     },
     {
       id: 5,
-      titulo: 'DJ Fuego hace arder la pista',
+      titulo: 'Cue participa en el ciclo musical “Hoy es jueves”',
       descripcion:
-        'Más de 3 horas de set y luces espectaculares encendieron el ambiente del Club Inferno.',
-      imagen: 'fotoPrueba.png',
+        'La Cue se suma a esta iniciativa cultural local ofreciendo conciertos de flamenco y jazz los jueves por la noche.',
+      imagen: 'Cue3.jpg',
+      fecha: '2025-06-05',
     },
     {
       id: 6,
-      titulo: 'Fiesta exclusiva solo por invitación',
+      titulo: 'Noche indie en Tarantino con bandas locales',
       descripcion:
-        'La Discoteca Velvet organizó un evento cerrado con celebridades y música en vivo.',
-      imagen: 'fotoPrueba.png',
+        'Tarantino acoge a bandas emergentes de la escena indie madrileña para una noche de música en vivo.',
+      imagen: 'Tarantino3.jpeg',
+      fecha: '2025-06-06',
     },
     {
       id: 7,
-      titulo: 'Nuevos cócteles tropicales en Bora Club',
+      titulo: 'Closer anuncia evento especial “Super Tardeo”',
       descripcion:
-        'Prueba la nueva selección de cócteles tropicales mientras bailas al ritmo de reggaetón y house.',
-      imagen: 'fotoPrueba.png',
+        'El domingo por la tarde, Closer organiza un evento para los amantes de la fiesta diurna con música, tapas y cócteles.',
+      imagen: 'Closer3.jpg',
+      fecha: '2025-06-07',
     },
     {
       id: 8,
-      titulo: 'Batalla de DJs en directo este viernes',
+      titulo: 'Belle Fusión organiza fiesta temática “Noche Ibicenca”',
       descripcion:
-        '4 DJs se enfrentarán en el escenario del club BeatZone. ¡El público elegirá al ganador!',
-      imagen: 'fotoPrueba.png',
+        'Este sábado, Belle Fusión se transforma en Ibiza con decoración blanca, cócteles especiales y música house en directo.',
+      imagen: 'belle3.jpeg',
+      fecha: '2025-06-08',
     },
   ];
 
